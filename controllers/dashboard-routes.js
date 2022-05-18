@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../models/');
+const { Post, User } = require('../models/');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
@@ -8,8 +8,13 @@ router.get('/', withAuth, async (req, res) => {
       where: {
         userId: req.session.userId,
       },
+      order: [
+        ["id", "DESC"]
+      ],
+      include: [{
+        model: User,
+      }]
     });
-
     const posts = postData.map((post) => post.get({ plain: true }));
 
     res.render('all-posts-admin', {

@@ -315,6 +315,21 @@ input {
   flex: 0 0 100%;
 }
 
+#postBody {
+  outline: none;
+  resize: none;
+  overflow: auto;
+  width: 100%;
+}
+
+#newPost {
+  margin: 7px;
+}
+
+.small {
+  font-size: 12px;
+}
+
 /* col-sm */
 @media screen and (min-width: 640px) {
   .col-sm-1 {
