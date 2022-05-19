@@ -13,6 +13,7 @@ router.get('/', withAuth, async (req, res) => {
       ],
       include: [{
         model: User,
+        attributes: {exclude: ["password"]},
       }]
     });
     const posts = postData.map((post) => post.get({ plain: true }));
@@ -34,11 +35,15 @@ router.get('/new', withAuth, (req, res) => {
 
 router.get('/edit/:id', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id);
-
+    let postData = await Post.findOne({
+      where: {id: req.params.id},
+      include: [{
+        model: User,
+        attributes: { exclude: ["password"]},
+      }],
+    });
     if (postData) {
-      const post = postData.get({ plain: true });
-
+      let post = postData.get({ plain: true });
       res.render('edit-post', {
         layout: 'dashboard',
         post,
@@ -50,5 +55,6 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     res.redirect('login');
   }
 });
+
 
 module.exports = router;

@@ -27,12 +27,20 @@ router.get('/', async (req, res) => {
 // get single post
 router.get('/post/:id', async (req, res) => {
   try {
-    let postData = await Post.findByPk({
+    let postData = await Post.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [{
+        model: User,
+        attributes: { exclude: ["password"]},
+      }],
     });
-    res.render("single-post");
+    const post = postData.get({ plain: true })
+    res.render("single-post", {
+      layout: "main",
+      post,
+    });
 
   } catch (err) {
     if (err) throw err;
