@@ -20,7 +20,7 @@ try {
   });
   
 
-  document.location.replace(`/post/${postId}`);
+  document.location.replace(`/dashboard`);
 } catch (err) {
   if (err) throw err;
 }
