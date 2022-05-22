@@ -2,10 +2,10 @@
  
 <form id="newPost">
       <label>Post Title</label>
-      <input type="text" id="postTitle">
+      <input type="text" id="postTitle" value="{{post.title}}">
       <label>Content</label><br>
       {{!-- <input type="text" id="postBody"> --}}
-      <textarea id="postBody" cols="10" rows="6"></textarea>
+      <textarea id="postBody" cols="10" rows="6">{{post.body}}</textarea>
       <button class="btn" id="updateBtn">Update</button>
       <button class="btn" id="deleteBtn">Delete</button>
       <button class="btn" id="cancelBtn">Cancel</button>

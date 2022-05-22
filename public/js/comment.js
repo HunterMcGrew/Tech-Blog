@@ -1,15 +1,19 @@
+// submit comment button
+const commentBtn = document.getElementById("commentBtn");
+
 const commentFormHandler = async function(event) {
   event.preventDefault();
 
-  const postId = document.querySelector('input[name="post-id"]').value;
-  const body = document.querySelector('textarea[name="comment-body"]').value;
+  const postId = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1];
+  const commentBody = document.getElementById("commentBody").value;
 
-  if (body) {
+  if (commentBody) {
     await fetch('/api/comment', {
       method: 'POST',
       body: JSON.stringify({
-        postId,
-        body
+        postId: postId,
+        body: commentBody,
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -20,6 +24,4 @@ const commentFormHandler = async function(event) {
   }
 };
 
-document
-  .querySelector('#new-comment-form')
-  .addEventListener('submit', commentFormHandler);
+commentBtn.addEventListener("click", commentFormHandler);

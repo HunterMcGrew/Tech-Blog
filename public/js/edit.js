@@ -1,11 +1,11 @@
 // const postId = document.querySelector('input[name="post-id"]').value;
 
+const postId = window.location.toString().split('/')[
+  window.location.toString().split('/').length - 1];
+
 const editFormHandler = async function(event) {
   event.preventDefault();
 
-  const postId = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
   let postTitle = document.getElementById('postTitle').value;
   let postBody = document.getElementById('postBody').value;
 try {
@@ -27,16 +27,18 @@ try {
 };
 
 const deleteClickHandler = async function() {
-  await fetch(`/api/post/:id`, {
+  await fetch(`/api/post/${postId}`, {
     method: 'DELETE',
+
   });
-  
+
 
   document.location.replace('/dashboard');
 };
 
-const cancelClickHandler = () => {
-  document.location.replace("/dashboard");
+const cancelClickHandler = (event) => {
+  event.preventDefault();
+  location.replace('/dashboard');
 }
 
 const updateBtn = document.getElementById("updateBtn");

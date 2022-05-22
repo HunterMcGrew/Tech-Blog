@@ -1,10 +1,9 @@
-<div class="posts list-group">
+<div class="posts list-group flex-column">
  
   {{#each posts as |post|}}
-  <div class="card">
     <a href="/dashboard/edit/{{post.id}}">
     <div class="card-header flex-row justify-space-between">
-      <div>
+      <div class="align-items-center">
         <h2>{{post.title}}</h2> 
       </div>
       <div class="username">
@@ -12,10 +11,6 @@
       </div>
     </div>
     </a>
-    {{!-- <div class="card-body">
-      <p>{{post.body}}</p> 
-    </div> --}}
-  </div>
   {{/each}}
 
 </div>

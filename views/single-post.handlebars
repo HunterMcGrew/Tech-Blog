@@ -12,8 +12,30 @@
     <div class="card-body">
       <p>{{post.body}}</p> 
     </div>
+    
   </div>
+
+    <div class="card2">
+      <textarea id="commentBody" cols="10" rows="7" placeholder="Type your comment here..."></textarea>
+      <button class="btn" id="commentBtn">Add Comment</button>
+    </div>
+
+    {{#each post.Comments as |comment|}}
+    <div class="card">
+      <div class="card-header"></div>
+        <div class="card-body">
+          <p>{{comment.body}}</p>
+          <p class="small"> -{{comment.User.username}}, {{format_date comment.createdAt}}</p>
+        </div>
+    </div>
+    {{/each}}
   
 </div>
 
 <script src="/js/comment.js"></script>
+
+<div class="row">
+  <div class="col-12 justify">
+
+  </div>
+</div>

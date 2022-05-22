@@ -18,6 +18,4 @@ const newFormHandler = async function(event) {
 
 const submit = document.getElementById("submit");
 submit.addEventListener("click", newFormHandler);
-// document
-//   .getElementById('submit')
-//   .addEventListener('submit', newFormHandler);
+
